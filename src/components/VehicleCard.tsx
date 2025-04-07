@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { Car } from 'lucide-react';
 
 type VehicleCardProps = {
   id: string;
@@ -11,24 +12,23 @@ type VehicleCardProps = {
   onClick: () => void;
 };
 
-const VehicleCard = ({ id, name, image, category, selected, onClick }: VehicleCardProps) => {
+const VehicleCard = ({ id, name, category, selected, onClick }: VehicleCardProps) => {
   return (
     <div 
       className={cn(
-        "flex flex-col items-center p-4 rounded-lg transition-all duration-200 cursor-pointer border-2",
+        "glass-card flex flex-col items-center p-6 rounded-xl transition-all duration-300 cursor-pointer",
+        "hover:scale-105 animate-fade-in",
         selected 
-          ? "border-autoblue bg-autoblue/10" 
-          : "border-gray-200 hover:border-autoblue/50 hover:bg-gray-50"
+          ? "bg-gradient-blue border-autoblue border-2" 
+          : "hover:border-white/30 border-transparent border"
       )}
       onClick={onClick}
     >
-      <img 
-        src={image} 
-        alt={name} 
-        className="w-40 h-24 object-contain mb-3"
-      />
-      <h3 className="font-medium text-sm">{name}</h3>
-      <span className="text-xs text-gray-500">{category}</span>
+      <div className="w-14 h-14 mb-4 rounded-full bg-gradient-to-br from-autoblue to-autoblue-dark flex items-center justify-center">
+        <Car className="w-8 h-8 text-white" />
+      </div>
+      <h3 className="font-display text-base font-medium text-white mb-1">{name}</h3>
+      <span className="text-xs text-gray-400">{category}</span>
     </div>
   );
 };

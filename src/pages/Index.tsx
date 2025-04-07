@@ -7,11 +7,11 @@ const Index = () => {
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-8 px-4">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-autodark mb-2">Vehicle Info Bot</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3 gradient-text">Vehicle Info Bot</h1>
+          <p className="text-gray-400 max-w-2xl mx-auto font-light">
             Select a vehicle from our collection and ask any questions about its features, specifications, and capabilities.
           </p>
         </header>

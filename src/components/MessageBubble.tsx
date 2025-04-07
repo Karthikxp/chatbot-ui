@@ -12,11 +12,11 @@ type MessageBubbleProps = {
 const MessageBubble = ({ message, isBot, timestamp }: MessageBubbleProps) => {
   return (
     <div className={cn(
-      "flex gap-3 animate-fade-in mb-4",
-      isBot ? "justify-start" : "justify-end"
+      "flex gap-3 mb-4",
+      isBot ? "justify-start animate-slide-in" : "justify-end animate-fade-in"
     )}>
       {isBot && (
-        <div className="flex-shrink-0 w-8 h-8 bg-autoblue rounded-full flex items-center justify-center">
+        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-autoblue to-autoblue-dark rounded-full flex items-center justify-center">
           <Bot className="h-5 w-5 text-white" />
         </div>
       )}
@@ -24,20 +24,20 @@ const MessageBubble = ({ message, isBot, timestamp }: MessageBubbleProps) => {
       <div className={cn(
         "max-w-[80%] rounded-2xl px-4 py-3",
         isBot 
-          ? "bg-gray-100 text-autodark rounded-tl-none" 
-          : "bg-autoblue text-white rounded-tr-none"
+          ? "glass-card text-gray-100 rounded-tl-none" 
+          : "bg-gradient-blue text-white rounded-tr-none"
       )}>
-        <div className="text-sm">{message}</div>
+        <div className="text-sm leading-relaxed">{message}</div>
         <div className={cn(
           "text-xs mt-1 text-right",
-          isBot ? "text-gray-500" : "text-blue-100"
+          isBot ? "text-gray-400" : "text-blue-200"
         )}>
           {timestamp}
         </div>
       </div>
       
       {!isBot && (
-        <div className="flex-shrink-0 w-8 h-8 bg-autoblue-dark rounded-full flex items-center justify-center">
+        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-autoblue-dark to-blue-800 rounded-full flex items-center justify-center">
           <User className="h-5 w-5 text-white" />
         </div>
       )}

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send, Car } from "lucide-react";
 import MessageBubble from './MessageBubble';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type Message = {
   id: string;
@@ -87,20 +88,20 @@ const ChatInterface = ({ selectedVehicle }: ChatInterfaceProps) => {
   };
   
   return (
-    <div className="flex flex-col h-full bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="flex flex-col h-full glass-card rounded-xl shadow-lg overflow-hidden border border-white/10 animate-fade-in">
       {/* Vehicle header */}
-      <div className="bg-autodark p-4 flex items-center space-x-3">
-        <div className="bg-autoblue rounded-full p-2">
+      <div className="bg-gradient-chat p-4 flex items-center space-x-3 border-b border-white/10">
+        <div className="bg-gradient-to-br from-autoblue to-autoblue-dark rounded-full p-2">
           <Car className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h3 className="text-white font-medium">{selectedVehicle.name}</h3>
+          <h3 className="text-white font-display font-medium">{selectedVehicle.name}</h3>
           <p className="text-gray-300 text-xs">{selectedVehicle.category}</p>
         </div>
       </div>
       
       {/* Messages container */}
-      <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
+      <ScrollArea className="flex-1 p-4 bg-gradient-to-b from-black/70 to-black/50 backdrop-blur-md">
         {messages.map(message => (
           <MessageBubble
             key={message.id}
@@ -111,33 +112,35 @@ const ChatInterface = ({ selectedVehicle }: ChatInterfaceProps) => {
         ))}
         
         {isLoading && (
-          <div className="flex items-center space-x-2 p-3 max-w-[50%] rounded-2xl bg-gray-100 animate-pulse">
-            <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+          <div className="flex items-center space-x-2 p-3 max-w-[50%] glass-card rounded-2xl animate-pulse">
+            <div className="w-2 h-2 rounded-full bg-autoblue"></div>
+            <div className="w-2 h-2 rounded-full bg-autoblue/70 animate-pulse"></div>
+            <div className="w-2 h-2 rounded-full bg-autoblue/40 animate-pulse"></div>
           </div>
         )}
         
         <div ref={messagesEndRef} />
-      </div>
+      </ScrollArea>
       
       {/* Input area */}
-      <div className="border-t p-3 flex items-center space-x-2">
-        <Input
-          placeholder="Type your question..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyPress={handleKeyPress}
-          disabled={isLoading}
-          className="flex-1"
-        />
-        <Button 
-          onClick={handleSendMessage} 
-          disabled={!inputValue.trim() || isLoading}
-          className="bg-autoblue hover:bg-autoblue-dark"
-        >
-          <Send className="h-5 w-5" />
-        </Button>
+      <div className="border-t border-white/10 p-4 bg-black/50">
+        <div className="flex items-center space-x-2 glass-card rounded-full p-1 pr-2">
+          <Input
+            placeholder="Type your question..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={handleKeyPress}
+            disabled={isLoading}
+            className="flex-1 bg-transparent border-0 text-white focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+          <Button 
+            onClick={handleSendMessage} 
+            disabled={!inputValue.trim() || isLoading}
+            className="bg-gradient-to-r from-autoblue to-autoblue-dark hover:from-autoblue-dark hover:to-autoblue text-white rounded-full w-10 h-10 p-0"
+          >
+            <Send className="h-5 w-5" />
+          </Button>
+        </div>
       </div>
     </div>
   );
